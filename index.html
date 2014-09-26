@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapify | Login</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Mapify</h1>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-4 columns">
+      	<div class="panel">
+	        <h3>User Login</h3>
+	        <div class="row">
+	        	<div class="large-12 medium-12 columns">
+              <!--LOGIN FORM START--> 
+                <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
+                <form id="loginForm" method="POST" action="sqlConnect.php">
+                <form id="loginForm">
+                  <label>Username</label>
+                  <input id="usernameInput" type="text" placeholder="username" name="usernameInput"/>
+                  <label>Password</label>
+                  <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
+                  <input type="submit" class="small button">
+                </form>
+              <!--LOGIN FORM END-->
+            </div>
+					</div>
+      	</div>
+      </div>
+    </div>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <!--<script src="loginSubmit.js"></script>-->
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
