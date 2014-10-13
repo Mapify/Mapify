@@ -1,56 +1,228 @@
 <!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapify | Login</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="#">Mapify</a></h1>
-    </ul>
+<html>
+	<head>
+  		<title>Happiness Index</title>
+  		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li><a href="#">Contact</a></li>
-      </ul>
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
-    </section>
-  </nav>
-    
-    <div class="row">
-      <div class="large-4 columns">
-      	<div class="panel">
-	        <h3>User Logins</h3>
-	        <div class="row">
-	        	<div class="large-12 medium-12 columns">
-              <!--LOGIN FORM START--> 
-                <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                <form id="loginForm" method="POST" action="sqlConnect.php">
-                <form id="loginForm">
-                  <label>Username</label>
-                  <input id="usernameInput" type="text" placeholder="username" name="usernameInput"/>
-                  <label>Password</label>
-                  <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
-                  <input type="submit" class="small button">
-                </form>
-              <!--LOGIN FORM END-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+
+
+        <link rel="stylesheet" href="css/main.css" type="text/css"/> 
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <!--<link type="text/css" rel="stylesheet" media="and (min-device-width: 1536px) and (max-device-width: 2048px) and (-webkit-min-device-pixel-ratio: 2)" href="css/ipad.css" />-->
+        <!--MAP LINKS-->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+        <!--MAP LINK END-->
+
+        <link rel="stylesheet" type="text/css" href="css/multi.css">
+        <link rel=" stylesheet" type="text/css" href="css/joyride-2.1css">
+
+        <link rel="stylesheet" href="css/foundation.css" />
+        <script src="js/vendor/modernizr.js"></script>
+		<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+        <script src="/js/vendor/modernizr.js"></script>
+
+	</head>
+	<body> 
+
+    <nav class="top-bar" data-topbar>
+          <ul class="title-area">
+            <li class="name">
+              <h1 id="numero1" class="so-awesome"><a href="#"><img src="img/logo.png" id="logo">.</a></h1>
+            </li>
+          </ul>
+          <p id="hideSidebar" onClick="sidebarOut()"><span style="font-size: 1.5em; line-height:1px;"><i class="fa fa-arrow-circle-left"></i></span></p>
+           <p id="showInfoBar" onClick="infoBarIn()"><span style="font-size: 1.5em; line-height:1px;"><i class="fa fa-info-circle"></i></span></p>
+           <p id="hideInfoBar" onClick="infoBarOut()"><span style="font-size: 1.5em; line-height:1px;"><i class="fa fa-arrow-circle-left"></i></span></p>
+    </nav>
+
+        <div class="row">
+            <div class="medium-8 columns" id="intro">
+                        <!--MAP AREA START-->
+                <div id="map"></div>
+                <div id ="legend">
+                    <div id="legendMinus">-</div>
+                    <div id="legendPlus">+</div>
+
+                    <!--<img id="legendImg" src="img/minus.png">
+                    <img id="legendImg2" src="img/plus.png">-->
+                </div>
+        <!--MAP AREA END--> 
             </div>
-					</div>
-      	</div>
-      </div>
-    </div>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!--<script src="loginSubmit.js"></script>-->
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
+
+        <div class="medium-4 columns" id="sidebar">
+            <div id="governmentArea1">
+                    <form action='' method='post'>
+                            <label><span style="color:black;">Local Government Area:</span></label><input id = "search" type='text' name='LGA' value='' class='auto' placeholder="Eg. Melbourne">
+                            <button type="button" id="button" onclick="submitter()">Submit</button>
+                    </form>
+            </div>
+
+            <div id="governmentArea2">
+                <form action='' method='post'>
+                    <label><span style="color:black;">Local Government Area:</span></label><input id = "search2" type='text' name='LGA2' value='' class='auto' placeholder="Eg. Gold Coast">
+                    <button type="button" id="button1" onclick="submitter2()">Compare</button>
+                </form>
+            </div>
+            
+            <div id="natAvForm">
+                <form action='' method='post'>
+                    <label id="checkNatAvDisplay"onclick="checkNatAvDisplay()"><span style="color:black;">Show National Average </span><input id ="natAvCheckBox" type='checkbox' name='natAvCheckBox' class='auto' checked></label>
+                </form>
+            </div>
+
+                <div id="skillChart">
+                    <span data-tooltip class="has-tip" title="Housing Affordability"><img src="img/housing.png" id="housing" onClick="sidebarIn1()"></span>
+                    <div id="natAv1" class="natAv"></div>
+                    <div id="bar1" class="skillBar" onClick="sidebarIn1()"></div>
+                    <p id="barNum1" class="barNum" onClick="sidebarIn1()"></p>
+                    <div id="bar2" class="skillBar offcol" onClick="sidebarIn1()"></div>
+
+                    <span data-tooltip class="has-tip" title="Wealth"><img src="img/money.png" onClick="sidebarIn2()"></span>
+                    <div id="natAv2" class="natAv"></div>
+                    <div id="bar3" class="skillBar" onClick="sidebarIn2()"></div>
+                    <p id="barNum2" class="barNum" onClick="sidebarIn2()"></p>
+                    <div id="bar4" class="skillBar offcol" onClick="sidebarIn2()"></div>
+
+                    <span data-tooltip class="has-tip" title="Jobs"><img src="img/briefcase.png" onClick="sidebarIn3()"></span>
+                    <div id="natAv3" class="natAv"></div>
+                    <div id="bar5" class="skillBar" onClick="sidebarIn3()"></div>
+                    <p id="barNum3" class="barNum" onClick="sidebarIn3()"></p>
+                    <div id="bar6" class="skillBar offcol" onClick="sidebarIn3()"></div>
+
+                    <span data-tooltip class="has-tip" title="Community"><img src="img/community.png" onClick="sidebarIn4()"></span>
+                    <div id="natAv4" class="natAv"></div>
+                    <div id="bar7" class="skillBar" onClick="sidebarIn4()"></div>
+                    <p id="barNum4" class="barNum" onClick="sidebarIn4()"></p>
+                    <div id="bar8" class="skillBar offcol" onClick="sidebarIn4()"></div>
+
+                    <span data-tooltip class="has-tip" title="Education"><img src="img/education.png" onClick="sidebarIn5()"></span>
+                    <div id="natAv5" class="natAv"></div>
+                    <div id="bar9" class="skillBar" onClick="sidebarIn5()"></div>
+                    <p id="barNum5" class="barNum" onClick="sidebarIn5()"></p>
+                    <div id="bar10" class="skillBar offcol" onClick="sidebarIn5()"></div>
+
+                    <span data-tooltip class="has-tip" title="Safety"><img src="img/safety.png" onClick="sidebarIn6()"></span>
+                    <div id="natAv6" class="natAv"></div>
+                    <div id="bar11" class="skillBar" onClick="sidebarIn6()"></div>
+                    <p id="barNum6" class="barNum" onClick="sidebarIn6()"></p>
+                    <div id="bar12" class="skillBar offcol" onClick="sidebarIn6()"></div>
+
+                    <span data-tooltip class="has-tip" title="Health"><img src="img/health.png" onClick="sidebarIn7()"></span>
+                    <div id="natAv7" class="natAv"></div>
+                    <div id="bar13" class="skillBar" onClick="sidebarIn7()"></div>
+                    <p id="barNum7" class="barNum" onClick="sidebarIn7()"></p>
+                    <div id="bar14" class="skillBar offcol" onClick="sidebarIn7()"></div>
+
+                    <span data-tooltip class="has-tip" title="Work/Life/Balance"><img src="img/balance.png" onClick="sidebarIn8()"></span>
+                    <div id="natAv8" class="natAv"></div>
+                    <div id="bar15" class="skillBar" onClick="sidebarIn8()"></div>
+                    <p id="barNum8" class="barNum" onClick="sidebarIn8()"></p>
+                    <div id="bar16" class="skillBar offcol" onClick="sidebarIn8()"></div>
+
+                    <span data-tooltip class="has-tip" title="Remoteness"><img src="img/remoteness.png" onClick="sidebarIn9()"></span>
+                    <div id="natAv9" class="natAv"></div>
+                    <div id="bar17" class="skillBar" onClick="sidebarIn9()"></div>
+                    <p id="barNum9" class="barNum" onClick="sidebarIn9()"></p>
+                    <div id="bar18" class="skillBar offcol" onClick="sidebarIn9()"></div>
+
+                    <span data-tooltip class="has-tip" title="Overall Happiness"><img src="img/overall.png">
+                    <div id="natAv10" class="natAv"></div>
+                    <div id="bar19" class="skillBar"></div>
+                    <p id="barNum10" class="barNum"</p>
+                    <div id="bar20" class="skillBar offcol"></div>
+                </div>
+
+        </div>
+        <!--Data sidebar-->
+        <div class="large-4 columns" id="hiddenSidebar">
+                <h4 id="outputHeader"></h4>
+                <h5 id="outputSubHeader1"></h5>
+                <h5 id="outputSubHeader2"></h5>
+                <p id="output"></p>
+                <p id="output2"></p>
+                <p id="output4"></p>
+        </div>
+
+        <!--Info sidebar-->
+        <div class="large-4 columns" id="infoBar">
+                <h4 id="infoHeader">About the Happiness Index</h4>
+                <p id="infoOutput">We built this site to provide useful and elegant information, available for public use. The data is census data provided from the Australian Bureau of statistics.<br><br>
+                <span style="font-size:1.2em;" class="label">Made by some kids at Bond</span></p>
+        </div>
+
+      <!-- Tip Content -->
+        <ol id="joyRideTipContent">
+            <li data-class="so-awesome" data-text="Next" class="custom">
+                <h2>Hello</h2>
+                <p>Welcome to the 2014 Australian Happiness Index! Search and compare locations around Australia based on census data and find out more about the places that mean the most to you.</p>
+            </li>
+            <li data-id="governmentArea1" data-button="Next" data-options="tipLocation:right">
+                <h2>Search</h2>
+                <p>Type in a local government area, then press submit! A bar graph will display data for your chosen location below.</p>
+            </li>
+            <li data-id="governmentArea2" data-button="Next" data-options="tipLocation:right">
+                <h2>Compare</h2>
+                <p>Enter another local government area to compare against.</p>
+            </li>
+            <li data-id="skillChart" data-button="Next" data-options="tipLocation:right">
+                <h2>Find out more!</h2>
+                <p>Once you submit and compare, you can click on the different sections of the bar graph to find out more data about your chosen locations.</p>
+            </li>
+            <li data-button="Next">
+                <h2>Map</h2>
+                <p>Browse the map using the legend below to compare locations. How does your area match up?</p>
+            </li>
+        </ol>
+
+        <script>
+          $(document).foundation();
+        </script>
+        <script src="js/jquery-1.8.2.min.js"></script>
+        <script src="js/mapLocations.js"></script>
+        <script src="js/customMapStyles.js"></script>
+        <script type="text/javascript" src="js/multi.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/dataLabels.js"></script>
+        <script src="js/foundation.joyride.js"</script>
+        <script src="/js/vendor/jquery.js"></script>
+        <script src="/js/vendor/fastclick.js"></script>
+        <script src="js/foundation.js"></script>
+        <script src="js/foundation.joyride.js"></script>
+        <script src="js/foundation.tooltip.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/vendor/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/jquery.joyride-2.1.js"></script>
+        <!-- runs the joyride only once -->
+        <script type="text/javascript">
+                $("#joyRideTipContent").joyride({
+            cookieMonster: true,
+            cookieName: 'JoyRide',
+            cookieDomain: false
+        });
+        </script> 
+        
+        <!-- runs joyride -->
+        <script>
+          $(window).load(function() {
+            $('#joyRideTipContent').joyride({
+              autoStart : true,
+              postStepCallback : function (index, tip) {
+              if (index == 2) {
+                $(this).joyride('set_li', false, 1);
+              }
+            },
+            modal:true,
+            expose: true
+            });
+          });
+        </script>
+ 
+	</body>
 </html>

@@ -1,0 +1,203 @@
+body {
+  overflow: hidden;
+}
+#skillChart{
+    width:80%;
+    height:25em;
+    margin-left:5%;
+    margin-right:auto;
+    text-align:left;
+    margin-top:150px;
+}
+
+#logo {
+  height: 30px;
+  margin-top: 10px;
+}
+
+#natAvForm{
+  height:20px;
+  margin-left:5%;
+  width:90%;
+  margin-bottom:0px;
+  margin-top:0px
+}
+
+#checkNumBarDisplay{
+  width:50px;
+  float:left;
+}
+
+.natAv {
+    width:0px;
+    height:1.25em;
+    position:absolute;
+    z-index:200;
+    margin-top:0px;
+    margin-bottom:1px;
+    margin-left: 8%;
+    background-color:#f39c12;
+    border-bottom: 3px solid #e67e22;
+}
+
+/*VALUE CHECKBOX STYLING
+#checkNumBarDisplay{
+  width:40%;
+  float:right;
+}*/
+
+.barNum {
+    font-size:0.8em; 
+    position:absolute;
+    height:5%;
+    position:absolute;
+    margin-top:-23px;
+    color:white;
+    margin-bottom:1px;
+    margin-left: 35px;
+    width:40px;
+    cursor:pointer;
+}
+
+.skillBar {
+    width:0px;
+    height:5%;
+    margin-top:1px;
+    margin-bottom:1px;
+    margin-left: 8%;
+    background-color:#25ce98;
+    border-bottom: 3px solid #2aaf84;
+    cursor:pointer;
+}
+
+.skillBar:hover {
+    opacity:0.8;
+}
+
+.offcol{
+    height:1.2%;
+    background-color:#bbbbba;
+    border-bottom: 3px solid #888784;
+    margin-top:1px;
+    margin-bottom:5px;
+}
+
+
+#legend{
+    width: 20%;
+    height: 1%; 
+    position:fixed;
+    bottom:5%;
+    left:4%;
+    color: #fafafa;
+    text-align: center;
+    text-transform: uppercase;
+    
+    background: #fa0000; 
+    background: -moz-linear-gradient(left, #fa0000 0%, #fa0000 19%, #fa0000 19%, #ff7d00 34%, #ffc800 49%, #96c800 67%, #64c800 82%, #00c800 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#fa0000), color-stop(19%,#fa0000), color-stop(19%,#fa0000), color-stop(34%,#ff7d00), color-stop(49%,#ffc800), color-stop(67%,#96c800), color-stop(82%,#64c800), color-stop(100%,#00c800)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #fa0000 0%,#fa0000 19%,#fa0000 19%,#ff7d00 34%,#ffc800 49%,#96c800 67%,#64c800 82%,#00c800 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #fa0000 0%,#fa0000 19%,#fa0000 19%,#ff7d00 34%,#ffc800 49%,#96c800 67%,#64c800 82%,#00c800 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #fa0000 0%,#fa0000 19%,#fa0000 19%,#ff7d00 34%,#ffc800 49%,#96c800 67%,#64c800 82%,#00c800 100%); /* IE10+ */
+    background: linear-gradient(to right, #fa0000 0%,#fa0000 19%,#fa0000 19%,#ff7d00 34%,#ffc800 49%,#96c800 67%,#64c800 82%,#00c800 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa0000', endColorstr='#00c800',GradientType=1 ); /* IE6-9 */
+}
+
+#legend p{
+    margin:0;
+    float:left;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#legend{
+    
+    }
+
+#legendMinus{
+    float:left;
+    margin-left:-8%;
+    color:black;
+    font-size: 1.5em;
+    margin-top:-4%;
+}
+
+#legendPlus{
+    float:right;
+    margin-top:-4%;
+    margin-right:-10%;
+    color:black;
+    font-size: 1.5em;
+
+}
+
+#infoBar{
+  height:95vh;
+  background: rgba(28, 24, 33, 0.96);
+  color:white;
+  position:absolute;
+  right:0;
+  top:0;
+  margin-right:-33.33333%;
+  margin-top:45px;
+  display:none;
+  z-index: 9999;
+}
+
+#hideInfoBar {
+  display:none;
+  color:white;
+  position:fixed;
+  right:0;
+  top:0;
+  margin-right:20px;
+  margin-top:10px;
+  cursor: pointer;
+}
+
+#showInfoBar {
+  color:white;
+  position:fixed;
+  right:0;
+  top:0;
+  margin-right:20px;
+  margin-top:10px;
+  cursor: pointer;
+}
+
+#infoHeader{
+  color:white;
+  margin-left:20px;
+  margin-top:20px;
+  margin-bottom:0px;
+}
+
+#infoSubHeader1{
+  color:white;
+  margin-left:20px;
+  margin-top:10px;
+  margin-bottom:0px;
+  float:left;
+}
+
+#infoOutput{
+  height:80vh;
+  margin-top:20px;
+  margin-left:20px;
+  width:80%;
+  clear:both;
+  float:left;
+}
+
+
+/*@media only screen and (max-device-width: 480px) {
+    #intro {
+        max-height: 20%;
+        height: 20%;
+    }
+}*/
+
+
