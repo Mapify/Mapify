@@ -1,4 +1,0 @@
-Mapify
-======
-
-Local Map Repo
