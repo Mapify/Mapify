@@ -16,10 +16,10 @@
     $clientPWord = $_POST["passwordInput"];
 
     //PROTECT FROM MYSQL INJECTION
-    $clientUser = stripslashes($clientUser);
+    /*$clientUser = stripslashes($clientUser);
     $clientPWord = stripslashes($clientPWord);
     $clientUser = mysql_real_escape_string($clientUser);
-    $clientPWord = mysql_real_escape_string($clientPWord);
+    $clientPWord = mysql_real_escape_string($clientPWord);*/
     
     $loginStatus = 0;
 
@@ -31,14 +31,24 @@
     $clientCity = "";
 
     //MYSQL SERVER LOGIN DETAILS
-    $host="131.244.54.3";
-    $port=3306;
+    $currIP=getHostByName(getHostName());
+
+    if($currIP == "131.244.54.3"){
+      $host="localhost";
+    }
+    else{
+      $host="131.244.54.3";
+    }
+
+    //$host="131.244.54.3"; // for local testing
+    //$host="localhost"; // for on server
+    //$port=3306;
     $username = "13277172";
     $password = "13277172";
     $dbname="mappingDB";
 
     //connection to the database
-    $con = mysql_connect($host, $username, $password, $dbname, $port) 
+    $con = mysql_connect($host, $username, $password, $dbname) 
       or die("..Unable to connect to MySQL");
     echo "..Connected to MySQL<br>";
 
