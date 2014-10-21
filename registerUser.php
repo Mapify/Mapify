@@ -12,7 +12,7 @@
 
     //$user = strval($_GET['q']);
     //$pword = strval($_GET['r']);
-    $clientUser = $_POST["emailInput"];
+    $clientUser = $_POST["emailRegInput"];
     $clientPWord = $_POST["pwordRegInput"];
 
     //PROTECT FROM MYSQL INJECTION
@@ -56,7 +56,7 @@
     $clientPWord = mysql_real_escape_string($clientPWord);
     
     //INSERT NEW USER VALUES INTO TABLE
-    mysql_query("INSERT INTO Users (UserName, pWord, LastName, FirstName)
+    mysql_query("INSERT INTO Users (Email, PWord, LastName, FirstName)
     VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
 
     //START SESSION
@@ -65,7 +65,7 @@
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
-      $result = mysql_query("SELECT userID, pWord, LastName, FirstName FROM Users WHERE UserName = '".$clientUser."'");
+      $result = mysql_query("SELECT userID, PWord, LastName, FirstName FROM Users WHERE Email = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
 
       //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM users");
@@ -74,7 +74,7 @@
       echo "<table border='1'>
       <tr>
       <th>User ID</th>
-      <th>Username</th>
+      <th>Email</th>
       <th>First Name</th>
       <th>Last Name</th>
       </tr>";
@@ -87,7 +87,7 @@
         $clientUID = $row['userID'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
-        echo "<td>" . $row['UserName'] . "</td>";
+        echo "<td>" . $row['Email'] . "</td>";
         echo "<td>" . $row['FirstName'] . "</td>";
         echo "<td>" . $row['LastName'] . "</td>";
         echo "</tr>";

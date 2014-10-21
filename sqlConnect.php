@@ -12,7 +12,7 @@
 
     //$user = strval($_GET['q']);
     //$pword = strval($_GET['r']);
-    $clientUser = $_POST["usernameInput"];
+    $clientUser = $_POST["emailInput"];
     $clientPWord = $_POST["passwordInput"];
 
     //PROTECT FROM MYSQL INJECTION
@@ -58,7 +58,7 @@
     $clientPWord = mysql_real_escape_string($clientPWord);
     
     //VERIFY LOGIN
-    $sql="SELECT * FROM Users WHERE UserName = '$clientUser' and pWord = '$clientPWord'";
+    $sql="SELECT * FROM Users WHERE Email = '$clientUser' and PWord = '$clientPWord'";
     $verificationResult=mysql_query($sql);
 
     if(mysql_num_rows($verificationResult) == 1){
@@ -73,7 +73,7 @@
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
-      $result = mysql_query("SELECT * FROM Users WHERE UserName = '".$clientUser."'");
+      $result = mysql_query("SELECT * FROM Users WHERE Email = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
 
       //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
@@ -82,10 +82,10 @@
       echo "<table border='1'>
       <tr>
       <th>User ID</th>
-      <th>Username</th>
+      <th>Email</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Address</th>
+      <th>Age</th>
       <th>City</th>
       </tr>";
 
@@ -95,14 +95,14 @@
         $clientFName = $row['FirstName'];
         $clientLName = $row['LastName'];
         $clientUID = $row['userID'];
-        $clientAddress = $row['Address'];
+        $clientAddress = $row['Age'];
         $clientCity = $row['City'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
-        echo "<td>" . $row['UserName'] . "</td>";
+        echo "<td>" . $row['Email'] . "</td>";
         echo "<td>" . $row['FirstName'] . "</td>";
         echo "<td>" . $row['LastName'] . "</td>";
-        echo "<td>" . $row['Address'] . "</td>";
+        echo "<td>" . $row['Age'] . "</td>";
         echo "<td>" . $row['City'] . "</td>";
         echo "</tr>";
       }
