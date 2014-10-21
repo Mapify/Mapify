@@ -56,6 +56,7 @@
 
     $clientUser = mysql_real_escape_string($clientUser);
     $clientPWord = mysql_real_escape_string($clientPWord);
+    $clientPWord = md5($clientPWord);
     
     //VERIFY LOGIN
     $sql="SELECT * FROM Users WHERE Email = '$clientUser' and PWord = '$clientPWord'";
@@ -110,7 +111,7 @@
 
       //welcome user
       echo "<h1>Welcome, ".$clientFName." ".$clientLName."</h1><br><br>";
-      echo '<a href="index.html"><button class="small button">Log Out</button></a>';
+      echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
     }
     else{
       echo '<br><br><div class="row">
@@ -138,7 +139,6 @@
     }
     //close the connection
     mysql_close($con);
-
     ?>
 
 <script src="js/vendor/jquery.js"></script>
