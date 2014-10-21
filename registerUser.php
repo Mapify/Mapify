@@ -12,21 +12,19 @@
 
     //$user = strval($_GET['q']);
     //$pword = strval($_GET['r']);
-    $clientUser = $_POST["usernameInput"];
-    $clientPWord = $_POST["passwordInput"];
+    $clientUser = $_POST["emailInput"];
+    $clientPWord = $_POST["pwordRegInput"];
 
     //PROTECT FROM MYSQL INJECTION
     $clientUser = stripslashes($clientUser);
     $clientPWord = stripslashes($clientPWord);
-    
+
     $loginStatus = 0;
 
     //VARIABLES READY TO SAVE RESULTS
-    $clientFName = "";
-    $clientLName = "";
+    $clientFName = $_POST["fNameInput"];
+    $clientLName = $_POST["lNameInput"];
     $clientUID = "";
-    $clientAddress = "";
-    $clientCity = "";
 
     //MYSQL SERVER LOGIN DETAILS
     $currIP=getHostByName(getHostName());
@@ -57,26 +55,20 @@
     $clientUser = mysql_real_escape_string($clientUser);
     $clientPWord = mysql_real_escape_string($clientPWord);
     
-    //VERIFY LOGIN
-    $sql="SELECT * FROM Users WHERE UserName = '$clientUser' and pWord = '$clientPWord'";
-    $verificationResult=mysql_query($sql);
+    //INSERT NEW USER VALUES INTO TABLE
+    mysql_query("INSERT INTO Users (UserName, pWord, LastName, FirstName)
+    VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
 
-    if(mysql_num_rows($verificationResult) == 1){
-      echo "..Login successful";
-      $loginStatus = 1;
-    }
-    else{
-      echo "..Incorrect login details";
-      $loginStatus = 0;
-    }
+    //START SESSION
+    $loginStatus = 1;
 
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
-      $result = mysql_query("SELECT * FROM Users WHERE UserName = '".$clientUser."'");
+      $result = mysql_query("SELECT userID, pWord, LastName, FirstName FROM Users WHERE UserName = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
 
-      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
+      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM users");
 
       //set up table
       echo "<table border='1'>
@@ -85,8 +77,6 @@
       <th>Username</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Address</th>
-      <th>City</th>
       </tr>";
 
       //fetch the data from the database 
@@ -95,15 +85,11 @@
         $clientFName = $row['FirstName'];
         $clientLName = $row['LastName'];
         $clientUID = $row['userID'];
-        $clientAddress = $row['Address'];
-        $clientCity = $row['City'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
         echo "<td>" . $row['UserName'] . "</td>";
         echo "<td>" . $row['FirstName'] . "</td>";
         echo "<td>" . $row['LastName'] . "</td>";
-        echo "<td>" . $row['Address'] . "</td>";
-        echo "<td>" . $row['City'] . "</td>";
         echo "</tr>";
       }
       echo "</table>";

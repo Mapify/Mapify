@@ -43,13 +43,17 @@
             <div class="large-12 medium-12 columns">
               <!--REGISTRATION FORM START--> 
                 <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                <form id="registrationForm" method="POST" action="">
+                <form id="registrationForm" method="POST" action="registerUser.php">
                   <label>Email</label>
                   <input id="emailReg" type="email" placeholder="email" name="emailInput"/>
+                  <label>First Name</label>
+                  <input id="fNameReg" type="text" placeholder="first name" name="fNameInput"/>
+                  <label>Last Name</label>
+                  <input id="lNameReg" type="text" placeholder="last name" name="lNameInput"/>
                   <label>Password</label>
-                  <input id="passwordReg" type="password" placeholder="password" name="passwordInput"/>
+                  <input id="passwordReg" type="password" placeholder="password" name="pwordRegInput"/>
                   <label>Confirm Password</label>
-                  <input id="passwordRegConfirm" type="password" placeholder="password" name="passwordInputConfirm"/>
+                  <input id="passwordRegConfirm" type="password" placeholder="password" name="pwordRegInputConfirm"/>
                   <input type="submit" class="small button">
                 </form>
               <!--REGISTRATION FORM END-->
