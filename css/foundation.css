@@ -103,8 +103,7 @@ select {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
-  margin-bottom: 0;
-  max-width: 62.5rem; }
+  margin-bottom: 0; }
   .row:before, .row:after {
     content: " ";
     display: table; }
@@ -1101,20 +1100,20 @@ button, .button {
   padding-bottom: 1.0625rem;
   padding-left: 2rem;
   font-size: 1rem;
-  background-color: #008cba;
+  background-color: #2ecc71;
   border-color: #007095;
   color: white;
   transition: background-color 300ms ease-out; }
   button:hover, button:focus, .button:hover, .button:focus {
-    background-color: #007095; }
+    background-color: #2ecc71; }
   button:hover, button:focus, .button:hover, .button:focus {
     color: white; }
   button.secondary, .button.secondary {
-    background-color: #e7e7e7;
+    background-color: #2ecc71;
     border-color: #b9b9b9;
     color: #333333; }
     button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
-      background-color: #b9b9b9; }
+      background-color: #2ecc71; }
     button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
       color: #333333; }
   button.success, .button.success {
@@ -3198,8 +3197,8 @@ dialog, .reveal-modal {
     margin-bottom: 0; }
   @media only screen and (min-width: 40.063em) {
     dialog, .reveal-modal {
-      margin-left: -40%;
-      width: 80%; } }
+      margin-left: -20%;
+      width: 40%; } }
   @media only screen and (min-width: 40.063em) {
     dialog, .reveal-modal {
       top: 6.25rem; } }

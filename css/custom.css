@@ -1,0 +1,23 @@
+#back {
+	width: 100%;
+	position: absolute;
+
+}
+
+.login {
+	margin-left: 35%;
+	margin-right: 35%;
+	margin-top: 8%;
+}
+
+body {
+	font-family: 'Vollkorn', serif;
+}
+
+
+#signup {
+	font-size: 1.625em;
+	font-weight: 700;
+	line-height: 1.15em;
+	margin-bottom: 0.375em;
+}
