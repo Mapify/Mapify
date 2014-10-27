@@ -9,24 +9,38 @@
   </head>
   <body>
     <?php
-
-    //$user = strval($_GET['q']);
-    //$pword = strval($_GET['r']);
-    $clientUser = $_POST["emailInput"];
-    $clientPWord = $_POST["passwordInput"];
-
-    //PROTECT FROM MYSQL INJECTION
-    $clientUser = stripslashes($clientUser);
-    $clientPWord = stripslashes($clientPWord);
+    session_start();
+    //SET MAIN SESSION VARIABLES
+    $_SESSION["clientUser"] = $_POST["emailInput"];
+    $_SESSION["clientPWord"] = $_POST["passwordInput"];
     
-    $loginStatus = 0;
+    //SESSION VARIABLES READY TO SAVE RESULTS
+    $_SESSION["clientFName"] = "";
+    $_SESSION["clientLName"] = "";
+    $_SESSION["clientUID"] = "";
+    $_SESSION["clientAge"] = "";
+    $_SESSION["clientCity"] = "";
 
-    //VARIABLES READY TO SAVE RESULTS
-    $clientFName = "";
+    //old
+    /*$clientFName = "";
     $clientLName = "";
     $clientUID = "";
     $clientAddress = "";
-    $clientCity = "";
+    $clientCity = "";*/
+
+    //old, variables
+    //$clientUser = $_POST["emailInput"];
+    //$clientPWord = $_POST["passwordInput"];
+
+    //new, PROTECT FROM MYSQL INJECTION
+    $_SESSION["clientUser"] = stripslashes($_SESSION["clientUser"]);
+    $_SESSION["clientPWord"] = stripslashes($_SESSION["clientPWord"]);
+
+    //old, PROTECT FROM MYSQL INJECTION
+    //$clientUser = stripslashes($clientUser);
+    //$clientPWord = stripslashes($clientPWord);
+    
+    $loginStatus = 0;
 
     //MYSQL SERVER LOGIN DETAILS
     $currIP=getHostByName(getHostName());
@@ -35,7 +49,7 @@
     }
     else{
       $host="131.244.54.3";
-    }
+    } 
 
     //$host="131.244.54.3"; // for local testing
     //$host="localhost"; // for on server
@@ -54,9 +68,18 @@
       or die("..Could not select examples");
     echo "..Selected database: " . $dbname."<br><br>";
 
-    $clientUser = mysql_real_escape_string($clientUser);
+    //new
+    $_SESSION["clientUser"] = mysql_real_escape_string($_SESSION["clientUser"]);
+    $_SESSION["clientPWord"] = mysql_real_escape_string($_SESSION["clientPWord"]);
+    $_SESSION["clientPWord"] = md5($_SESSION["clientPWord"]);
+
+    $clientUser = $_SESSION["clientUser"];
+    $clientPWord = $_SESSION["clientPWord"];
+
+    //old
+    /*$clientUser = mysql_real_escape_string($clientUser);
     $clientPWord = mysql_real_escape_string($clientPWord);
-    $clientPWord = md5($clientPWord);
+    $clientPWord = md5($clientPWord);*/
     
     //VERIFY LOGIN
     $sql="SELECT * FROM Users WHERE Email = '$clientUser' and PWord = '$clientPWord'";
@@ -93,11 +116,11 @@
       //fetch the data from the database 
       while ($row = mysql_fetch_array($result)) {
         //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
-        $clientFName = $row['FirstName'];
-        $clientLName = $row['LastName'];
-        $clientUID = $row['userID'];
-        $clientAddress = $row['Age'];
-        $clientCity = $row['City'];
+        $_SESSION["clientFName"] = $row['FirstName'];
+        $_SESSION["clientLName"] = $row['LastName'];
+        $_SESSION["clientUID"] = $row['userID'];
+        $_SESSION["clientAge"] = $row['Age'];
+        $_SESSION["clientCity"] = $row['City'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
         echo "<td>" . $row['Email'] . "</td>";
@@ -110,7 +133,7 @@
       echo "</table>";
 
       //welcome user
-      echo "<h1>Welcome, ".$clientFName." ".$clientLName."</h1><br><br>";
+      echo "<h1>Welcome, ".$_SESSION['clientFName']." ".$_SESSION['clientLName']."</h1><br><br>";
       echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
     }
     else{

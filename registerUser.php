@@ -9,22 +9,30 @@
   </head>
   <body>
     <?php
+    session_start();
+    //SET MAIN SESSION VARIABLES
+    $_SESSION["clientUser"] = $_POST["emailRegInput"];
+    $_SESSION["clientPWord"] = $_POST["pwordRegInput"];
+    
+    //SESSION VARIABLES READY TO SAVE
+    $_SESSION["clientFName"] = $_POST["fNameInput"];
+    $_SESSION["clientLName"] = $_POST["lNameInput"];
+    $_SESSION["clientUID"] = "";
 
-    //$user = strval($_GET['q']);
-    //$pword = strval($_GET['r']);
-    $clientUser = $_POST["emailRegInput"];
-    $clientPWord = $_POST["pwordRegInput"];
+    //old,variables
+    /*$clientUser = $_POST["emailRegInput"];
+    $clientPWord = $_POST["pwordRegInput"];*/
 
     //PROTECT FROM MYSQL INJECTION
-    $clientUser = stripslashes($clientUser);
-    $clientPWord = stripslashes($clientPWord);
+    $_SESSION["clientUser"] = stripslashes($_SESSION["clientUser"]);
+    $_SESSION["clientPWord"] = stripslashes($_SESSION["clientPWord"]);
 
     $loginStatus = 0;
 
     //VARIABLES READY TO SAVE RESULTS
-    $clientFName = $_POST["fNameInput"];
+    /*$clientFName = $_POST["fNameInput"];
     $clientLName = $_POST["lNameInput"];
-    $clientUID = "";
+    $clientUID = "";*/
 
     //MYSQL SERVER LOGIN DETAILS
     $currIP=getHostByName(getHostName());
@@ -52,9 +60,14 @@
       or die("..Could not select examples");
     echo "..Selected database: " . $dbname."<br><br>";
 
-    $clientUser = mysql_real_escape_string($clientUser);
-    $clientPWord = mysql_real_escape_string($clientPWord);
-    $clientPWord = md5($clientPWord);
+    $_SESSION["clientUser"] = mysql_real_escape_string($_SESSION["clientUser"]);
+    $_SESSION["clientPWord"] = mysql_real_escape_string($_SESSION["clientPWord"]);
+    $_SESSION["clientPWord"] = md5($_SESSION["clientPWord"]);
+
+    $clientUser = $_SESSION["clientUser"];
+    $clientPWord = $_SESSION["clientPWord"];
+    $clientLName = $_SESSION["clientLName"];
+    $clientFName = $_SESSION["clientFName"];
 
     //INSERT NEW USER VALUES INTO TABLE
     mysql_query("INSERT INTO Users (Email, PWord, LastName, FirstName)
@@ -84,8 +97,9 @@
       while ($row = mysql_fetch_array($result)) {
         //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
         $clientFName = $row['FirstName'];
-        $clientLName = $row['LastName'];
-        $clientUID = $row['userID'];
+        $_SESSION["clientFName"] = $row['FirstName'];
+        $_SESSION["clientLName"] = $row['LastName'];
+        $_SESSION["clientUID"] = $row['userID'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
         echo "<td>" . $row['Email'] . "</td>";
