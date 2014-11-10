@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapify | Account Settings</title>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Mapify</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="has-dropdown">
+            <a href="#">Menu</a>
+            <ul class="dropdown">
+              <li><a href="#">First link in dropdown</a></li>
+              <li class="active"><a href="#">Active link in dropdown</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+    
+    <div class="row intro">
+      <!--NEED TO MAKE SURE THAT TAYLOR AND BENS DIRECTORIES HAVE THE SAME ARCHITECTURE-->
+      <!--<img src="img/intro.png" id="back">-->
+      <div class="large-4 columns login">
+          <h4 style="padding-bottom:20px;" id="signup">Update Account Settings</h4>
+          <div class="row login">
+            <div class="large-12 medium-centered columns">
+              <!--LOGIN FORM START-->
+                <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
+                <form id="accountSettingsForm" method="POST" action="updateAccSettings.php">
+                  <label>Confirm current details to update information</label>
+                  <input id="emailInput" type="text" placeholder="Email" name="emailInput"/>
+                  <input id="oldPWordInput" type="password" placeholder="Current Password" name="oldPWordInput"/>
+
+                  <input id="newPWordInput" type="password" placeholder="New Password" name="newPWordInput"/>
+                  <input id="newPWordConfirm" type="password" placeholder="Confirm New Password" name="newPWordConfirm"/>
+                  <input type="submit" class="small button radius ">
+                </form>
+            </div>
+          </div>
+      </div>
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <!--<script src="loginSubmit.js"></script>-->
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

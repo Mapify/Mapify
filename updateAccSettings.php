@@ -11,28 +11,30 @@
     <?php
     session_start();
     //SET MAIN SESSION VARIABLES
-    $_SESSION["clientUser"] = $_POST["emailRegInput"];
-    $_SESSION["clientPWord"] = $_POST["pwordRegInput"];
-    
-    //SESSION VARIABLES READY TO SAVE
-    $_SESSION["clientFName"] = $_POST["fNameInput"];
-    $_SESSION["clientLName"] = $_POST["lNameInput"];
-    $_SESSION["clientUID"] = "";
+    $_SESSION["clientUser"] = $_POST["emailInput"];
+    $_SESSION["clientPWord"] = $_POST["oldPWordInput"];
+    //SESSION VARIABLES READY TO SAVE RESULTS
 
-    //old,variables
-    /*$clientUser = $_POST["emailRegInput"];
-    $clientPWord = $_POST["pwordRegInput"];*/
+    //old
+    /*$clientFName = "";
+    $clientLName = "";
+    $clientUID = "";
+    $clientAddress = "";
+    $clientCity = "";*/
 
-    //PROTECT FROM MYSQL INJECTION
+    //old, variables
+    //$clientUser = $_POST["emailInput"];
+    //$clientPWord = $_POST["passwordInput"];
+
+    //new, PROTECT FROM MYSQL INJECTION
     $_SESSION["clientUser"] = stripslashes($_SESSION["clientUser"]);
     $_SESSION["clientPWord"] = stripslashes($_SESSION["clientPWord"]);
 
+    //old, PROTECT FROM MYSQL INJECTION
+    //$clientUser = stripslashes($clientUser);
+    //$clientPWord = stripslashes($clientPWord);
+    
     $loginStatus = 0;
-
-    //VARIABLES READY TO SAVE RESULTS
-    /*$clientFName = $_POST["fNameInput"];
-    $clientLName = $_POST["lNameInput"];
-    $clientUID = "";*/
 
     //MYSQL SERVER LOGIN DETAILS
     $currIP=getHostByName(getHostName());
@@ -41,7 +43,7 @@
     }
     else{
       $host="131.244.54.3";
-    }
+    } 
 
     //$host="131.244.54.3"; // for local testing
     //$host="localhost"; // for on server
@@ -60,59 +62,72 @@
       or die("..Could not select examples");
     echo "..Selected database: " . $dbname."<br><br>";
 
+    //new
     $_SESSION["clientUser"] = mysql_real_escape_string($_SESSION["clientUser"]);
     $_SESSION["clientPWord"] = mysql_real_escape_string($_SESSION["clientPWord"]);
     $_SESSION["clientPWord"] = md5($_SESSION["clientPWord"]);
 
     $clientUser = $_SESSION["clientUser"];
     $clientPWord = $_SESSION["clientPWord"];
-    $clientLName = $_SESSION["clientLName"];
-    $clientFName = $_SESSION["clientFName"];
+    
+    //VERIFY LOGIN
+    $sql="SELECT * FROM Users WHERE Email = '$clientUser' and PWord = '$clientPWord'";
+    $verificationResult=mysql_query($sql);
 
-    //INSERT NEW USER VALUES INTO TABLE
-    mysql_query("INSERT INTO Users (Email, PWord, LastName, FirstName)
-    VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
-
-    //START SESSION
-    $loginStatus = 1;
+    if(mysql_num_rows($verificationResult) == 1){
+      echo "..Login successful";
+      $loginStatus = 1;
+    }
+    else{
+      echo "..Incorrect login details";
+      $loginStatus = 0;
+    }
 
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
+      $_SESSION["clientPWord"] = md5($_POST["newPWordInput"]);
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
-      $result = mysql_query("SELECT userID, PWord, LastName, FirstName FROM Users WHERE Email = '".$clientUser."'");
+      $insert = mysql_query(
+      "UPDATE Users
+      SET PWord = '".$_SESSION['clientPWord']."'
+      WHERE Email = '".$_SESSION['clientUser']."'");
       //$result = mysql_query($con,$sql);
-
-      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM users");
+      
+      $result = mysql_query("SELECT * FROM Users WHERE Email = '".$clientUser."'");
+      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
 
       //set up table
-      echo "<table border='1'>
+      echo "<h1>Account information updated!</h1>
+      <table border='1'>
       <tr>
       <th>User ID</th>
       <th>Email</th>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Age</th>
+      <th>City</th>
       </tr>";
 
       //fetch the data from the database 
       while ($row = mysql_fetch_array($result)) {
         //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
-        $clientFName = $row['FirstName'];
         $_SESSION["clientFName"] = $row['FirstName'];
         $_SESSION["clientLName"] = $row['LastName'];
         $_SESSION["clientUID"] = $row['userID'];
+        $_SESSION["clientAge"] = $row['Age'];
+        $_SESSION["clientCity"] = $row['City'];
         echo "<tr>";
         echo "<td>" . $row['userID'] . "</td>";
         echo "<td>" . $row['Email'] . "</td>";
         echo "<td>" . $row['FirstName'] . "</td>";
         echo "<td>" . $row['LastName'] . "</td>";
+        echo "<td>" . $row['Age'] . "</td>";
+        echo "<td>" . $row['City'] . "</td>";
         echo "</tr>";
       }
       echo "</table>";
-      echo '<a href="profileSettings.html"><button class="small button">Update Info</button></a>';
-      echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
 
       //welcome user
-      echo "<h1>Welcome, ".$clientFName." ".$clientLName."</h1><br><br>";
       echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
     }
     else{
@@ -141,7 +156,6 @@
     }
     //close the connection
     mysql_close($con);
-
     ?>
 
 <script src="js/vendor/jquery.js"></script>

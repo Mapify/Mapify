@@ -131,10 +131,13 @@
         echo "</tr>";
       }
       echo "</table>";
+      echo '<a href="profileSettings.html"><button class="small button">Update Profile Info</button></a>';
+      echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
 
       //welcome user
       echo "<h1>Welcome, ".$_SESSION['clientFName']." ".$_SESSION['clientLName']."</h1><br><br>";
       echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
+
     }
     else{
       echo '<br><br><div class="row">
