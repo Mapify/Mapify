@@ -21,3 +21,8 @@ body {
 	line-height: 1.15em;
 	margin-bottom: 0.375em;
 }
+
+.profilePic{
+	height:45px;
+	width:45px;
+}

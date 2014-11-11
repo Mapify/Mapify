@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapify | User Profile</title>
     <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/custom.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
@@ -100,8 +101,43 @@
       $result = mysql_query("SELECT * FROM Users WHERE Email = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
 
-      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
+      //fetch the data from the database 
+      while ($row = mysql_fetch_array($result)) {
+        //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
+        $_SESSION["clientFName"] = $row['FirstName'];
+        $_SESSION["clientLName"] = $row['LastName'];
+        $_SESSION["clientUID"] = $row['userID'];
+        $_SESSION["clientAge"] = $row['Age'];
+        $_SESSION["clientCity"] = $row['City'];  
+      }
 
+      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
+      //ECHO NAV BAR
+      echo '<nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Mapify</a></h1>
+          </li>
+           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li>
+              <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Menu</a>
+              <ul class="dropdown">
+                <li><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>';
       //set up table
       echo "<table border='1'>
       <tr>
@@ -113,25 +149,24 @@
       <th>City</th>
       </tr>";
 
-      //fetch the data from the database 
-      while ($row = mysql_fetch_array($result)) {
-        //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
-        $_SESSION["clientFName"] = $row['FirstName'];
-        $_SESSION["clientLName"] = $row['LastName'];
-        $_SESSION["clientUID"] = $row['userID'];
-        $_SESSION["clientAge"] = $row['Age'];
-        $_SESSION["clientCity"] = $row['City'];
-        echo "<tr>";
-        echo "<td>" . $row['userID'] . "</td>";
-        echo "<td>" . $row['Email'] . "</td>";
-        echo "<td>" . $row['FirstName'] . "</td>";
-        echo "<td>" . $row['LastName'] . "</td>";
-        echo "<td>" . $row['Age'] . "</td>";
-        echo "<td>" . $row['City'] . "</td>";
+      
+      echo "<tr>";
+        echo "<td>" . $_SESSION["clientUID"] . "</td>";
+        echo "<td>" . $_SESSION["clientUser"] . "</td>";
+        echo "<td>" . $_SESSION["clientFName"] . "</td>";
+        echo "<td>" . $_SESSION["clientLName"] . "</td>";
+        echo "<td>" . $_SESSION["clientAge"] . "</td>";
+        echo "<td>" . $_SESSION["clientCity"] . "</td>";
         echo "</tr>";
-      }
       echo "</table>";
-      echo '<a href="profileSettings.html"><button class="small button">Update Profile Info</button></a>';
+
+      echo '<form action="upload.php" method="post" enctype="multipart/form-data">
+      Select image to upload:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="submit" class="small button" value="Upload Image" name="submit">
+      </form>';
+
+      echo '<a href="profileSettings.html"><button class="small button">Update Profile Info</button></a><br>';
       echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
 
       //welcome user

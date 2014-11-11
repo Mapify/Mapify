@@ -82,7 +82,42 @@
       $result = mysql_query("SELECT userID, PWord, LastName, FirstName FROM Users WHERE Email = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
 
+      //fetch the data from the database 
+      while ($row = mysql_fetch_array($result)) {
+        //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
+        $clientFName = $row['FirstName'];
+        $_SESSION["clientFName"] = $row['FirstName'];
+        $_SESSION["clientLName"] = $row['LastName'];
+        $_SESSION["clientUID"] = $row['userID'];
+      }
+
       //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM users");
+      //ECHO NAV BAR
+      echo '<nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Mapify</a></h1>
+          </li>
+           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li>
+              <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Menu</a>
+              <ul class="dropdown">
+                <li><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>';
 
       //set up table
       echo "<table border='1'>
@@ -93,21 +128,20 @@
       <th>Last Name</th>
       </tr>";
 
-      //fetch the data from the database 
-      while ($row = mysql_fetch_array($result)) {
-        //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
-        $clientFName = $row['FirstName'];
-        $_SESSION["clientFName"] = $row['FirstName'];
-        $_SESSION["clientLName"] = $row['LastName'];
-        $_SESSION["clientUID"] = $row['userID'];
-        echo "<tr>";
-        echo "<td>" . $row['userID'] . "</td>";
-        echo "<td>" . $row['Email'] . "</td>";
-        echo "<td>" . $row['FirstName'] . "</td>";
-        echo "<td>" . $row['LastName'] . "</td>";
+      echo "<tr>";
+        echo "<td>" . $_SESSION["clientUID"] . "</td>";
+        echo "<td>" . $_SESSION["clientUser"] . "</td>";
+        echo "<td>" . $_SESSION["clientFName"] . "</td>";
+        echo "<td>" . $_SESSION["clientLName"] . "</td>";
         echo "</tr>";
-      }
       echo "</table>";
+
+      echo '<form action="upload.php" method="post" enctype="multipart/form-data">
+      Select image to upload:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="submit" class="small button" value="Upload Image" name="submit">
+      </form>';
+
       echo '<a href="profileSettings.html"><button class="small button">Update Info</button></a>';
       echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
 
