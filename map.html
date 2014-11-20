@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,100,100italic,400italic,700,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    
+    <!--NAV START-->
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#" onclick="toggleLeftNav()">Mapify</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li><a href="#" onclick="toggleLeftNav()">Toggle Left Nav</a></li>
+          <li><a href="#" onclick="toggleRightNav()">Toggle Right Nav</a></li>
+          <li class="has-dropdown" onclick="toggleRightNav()">
+            <a href="#">Menu</a>
+            <ul class="dropdown">
+              <li><a href="#">First link in dropdown</a></li>
+              <li class="active"><a href="#">Active link in dropdown</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+      <!--NAV ENDING-->
+
+        <section class="main-section">
+          <!--ALL CONTENT GOES INSIDE THIS SECTION-->
+          <div id="map"></div>
+              <div class="row">
+                <div class="large-4 medium-4 columns" id="leftNavPanel">        
+                  <ul>
+                    <li>Nav link 1</li>
+                    <li>Nav link 2</li>
+                    <li>Nav link 3</li>
+                    <li>Nav link 4</li>
+                  </ul>
+                </div>    
+              </div>
+              <div class="row">
+                <div class="large-4 medium-4 columns" id="rightNavPanel">
+                  <ul>
+                    <li>Nav link 1</li>
+                    <li>Nav link 2</li>
+                    <li>Nav link 3</li>
+                    <li>Nav link 4</li>
+                  </ul>
+                </div>
+
+              </div>
+
+            
+          <!--END OF CONTENT-->
+        </section>
+
+      <a class="exit-off-canvas"></a>
+    <script src="js/multi.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/foundation/foundation.js"></script>
+    <script src="js/foundation/foundation.reveal.js"></script>
+    <script src="js/foundation/foundation.topbar.js"></script>
+    <script src="js/foundation/foundation.offcanvas.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
