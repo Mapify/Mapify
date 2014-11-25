@@ -4,53 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapify | Login</title>
-    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/custom.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
     
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#">Mapify</a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="has-dropdown">
-            <a href="#">Menu</a>
-            <ul class="dropdown">
-              <li><a href="#">First link in dropdown</a></li>
-              <li class="active"><a href="#">Active link in dropdown</a></li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-    </nav>
-    
-    <div class="row intro">
-      <!--NEED TO MAKE SURE THAT TAYLOR AND BENS DIRECTORIES HAVE THE SAME ARCHITECTURE-->
-      <img src="img/intro.png" id="back">
-      <div class="large-4 columns login">
-          <h4 style="padding-bottom:20px;" id="signup">Login</h4>
-          <div class="row login">
-            <div class="large-12 medium-centered columns">
-              <!--LOGIN FORM START--> 
-                <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                <form id="loginForm" method="POST" action="sqlConnect.php">
+     <div id="top"></div>
+    <div class="contain-to-grid sticky">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <img src="img/logo.png">
+                </li>
+            </section>
+        </nav>
+    </div>
+    <section class="jumbo">
+        <div class="row">
+            <div class="large-4 columns login">
+                <h1>Mapify</h1>
+                <p class="text-center">
+                    <form id="loginForm" method="POST" action="sqlConnect.php">
                   
                   <input id="emailInput" type="email" placeholder="email" name="emailInput"/>
                   
                   <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
                   <input type="submit" class="small button radius ">
 
-                  <h4 style="padding-top:20px;" id="signup">Sign Up</h4>
+                  <h4 style="padding-top:20px; colour: white;" id="signup">Sign Up</h4>
                   Get started today and try <b>mapify</b>, it's totally <b>free</b>. <br><br>
                   <a href="#" class="small button radius" data-reveal-id="myModal">Sign Up</a>
                 </form>
@@ -80,11 +63,110 @@
                     <a class="close-reveal-modal">&#215;</a>
                   </div>
                 </form>
-              <!--LOGIN FORM END-->
+                </p>
+
             </div>
         </div>
-      </div>
-    </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="small-12 large-12 columns">
+                <div class="text-center">
+                    <h2>Welcome to Mapify</h2>
+                    <p>Mapify is a desktop and mobile web based application service that utilises google map  to create custom social events and tracks to share to your network of friends</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio">
+        <div class="row">
+            <div class="large-12 columns">
+                <h2>How it Works</h2>
+                <h4 class="text-center">Simple & Easy</h4>
+                <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+                    <li>
+                        <img class="th" src="img/port1.png" alt="image1" />
+                    </li>
+                    <li>
+                        <img class="th" src="img/port2.png" alt="image2" />
+
+                    </li>
+                    <li>
+                        <img class="th" src="img/port3.png" alt="image3" />
+                    </li>
+                    <li>
+                        <img class="th" src="img/port4.png" alt="image1" />
+                    </li>
+                    <li>
+                        <img class="th" src="img/port5.png" alt="image2" />
+
+                    </li>
+                    <li>
+                        <img class="th" src="img/port6.png" alt="image3" />
+                    </li>
+                    <li>
+                        <img class="th" src="img/port7.png" alt="image2" />
+
+                    </li>
+                    <li>
+                        <img class="th" src="img/port8.png" alt="image3" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="contact">
+            <div class="row">
+                <div class="large-12 columns">
+                  <H1> The Team </h1>
+                    <div>
+                        <ul class="small-block-grid-1 large-block-grid-4">
+                            <li>
+                                <h3>Ben Hare</h3>
+                                <p>Phasellus facilisis, nunc in lacinia auctor, eros lacus aliquet velit, quis lobortis risus nunc nec nisi. Maecenas et turpis vitae velit volutpat porttitor a sit amet est. Uthasellus facilisis, nunc in lacinia auctor, eros lacus aliquet velit, quis lobortis risus nunc nec nisi.</p>
+                            </li>
+                            <li>
+                                <h3>Taylor Bett</h3>
+                                <p>Phasellus facilisis, nunc in lacinia auctor, eros lacus aliquet velit, quis lobortis risus nunc nec nisi. Maecenas et turpis vitae velit volutpat porttitor a sit amet est. Uthasellus facilisis, nunc in lacinia auctor, eros lacus aliquet velit, quis lobortis risus nunc nec nisi.</p>
+                            </li>
+                            <li>
+                                <h3>Contact</h3>
+                                <ul>
+                                    <li>
+                                        <i class="fi-telephone"></i> (512)111-2222
+                                    </li>
+                                    <li>
+                                        <i class="fi-home"></i> 1234 Lorem ipsum<br>Australia QLD, 4217</li>
+                                    <li>
+                                        <i class="fi-mail"></i> info@yourdomain.com
+                                    </li>
+                                </ul>
+                                <img src="img/map.png" alt="map" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="large-4 pull-1 columns text-center">
+                        <p>&copy; Mapify</p>
+                    </div>
+                    <div class="large-7 push-2 columns text-center">
+                        <!-- Please Leave this link out of respect for the designer -->
+                        <p>Designed By:
+                            Taylor & Ben Hare</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </footer>
 
 
     <script src="js/vendor/jquery.js"></script>
