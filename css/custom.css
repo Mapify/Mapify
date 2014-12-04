@@ -2,16 +2,26 @@ body {
 font-family: 'Roboto', sans-serif;
 }
 
+#simple {
+  color: black;
+  text-align: center;
+  box-shadow: none;
+}
+
 .jumbo{
-    background-image: url(../img/intro.png);
+    background-image: url(../img/intro_alt.jpg);
     background-size: cover;
     background-attachment: fixed;
     padding: 100px 0;
     margin-bottom: 30px;
+    text-align: center;
+}
+
+#about {
+  padding-top: 3%;
 }
 
 .jumbo h1{
-    color: #fff;
     text-align: center;
     margin-bottom: 15px;
 }
@@ -59,7 +69,7 @@ section{
 }
 #contact{
     background: #fff;
-    padding-bottom: 30px;
+    padding-bottom: 10%;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -70,7 +80,7 @@ section{
 
 
 .copy{
-    background: #737373;
+    background: #eb5860;
     padding: 10px 0;
 }
 
@@ -97,7 +107,7 @@ ul, ol, dl {
         
 }
 #portfolio h2,h4{
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
@@ -120,10 +130,8 @@ ul, ol, dl {
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: 1%;
-}
-
-body {
-	font-family: 'Vollkorn', serif;
+  color: black;
+  text-align: center;
 }
 
 
@@ -137,6 +145,14 @@ body {
 .profilePic{
 	height:45px;
 	width:45px;
+}
+
+#profile {
+  text-align: center;
+}
+
+#profile2 {
+  text-align: left;
 }
 
 #map{
