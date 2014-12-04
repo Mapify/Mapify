@@ -36,7 +36,6 @@ font-family: 'Roboto', sans-serif;
 
 .top-bar-section ul li, .top-bar-section li:not(.has-form) a:not(.button){
     background: none;
-    
 }
 
 .top-bar-section li:not(.has-form) a:hover:not(.button){
