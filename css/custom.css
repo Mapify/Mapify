@@ -256,6 +256,11 @@ font-family: 'Roboto', sans-serif;
 section{
     padding-bottom: 150px;
 }
+
+#userHomeSection{
+  padding-bottom: 0px;
+}
+
 #contact{
     background: #fff;
     padding-bottom: 10%;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapify | User Profile</title>
+    <title>Mapify | Profile Settings</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <script src="js/vendor/modernizr.js"></script>
@@ -111,95 +111,12 @@
         $_SESSION["clientUID"] = $row['userID'];
         $_SESSION["clientAge"] = $row['Age'];
         $_SESSION["clientCity"] = $row['City'];
-      }
-
-      //ECHO NAV BAR
-      echo '<nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="#">Mapify</a></h1>
-          </li>
-           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-
-        <section class="top-bar-section">
-          <!-- Right Nav Section -->
-          <ul class="right">
-            <li>
-              <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
-            </li>
-            <li class="has-dropdown">
-              <a href="#">Menu</a>
-              <ul class="dropdown">
-                <li><a href="#">First link in dropdown</a></li>
-                <li class="active"><a href="#">Active link in dropdown</a></li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-      </nav>';
-
-      //set up table
-      echo "<h1>User Info Updated!!</h1>
-      <table border='1'>
-      <tr>
-      <th>User ID</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>City</th>
-      </tr>";
-
-      echo "<tr>";
-        echo "<td>" . $_SESSION["clientUID"] . "</td>";
-        echo "<td>" . $_SESSION["clientUser"] . "</td>";
-        echo "<td>" . $_SESSION["clientFName"] . "</td>";
-        echo "<td>" . $_SESSION["clientLName"] . "</td>";
-        echo "<td>" . $_SESSION["clientAge"] . "</td>";
-        echo "<td>" . $_SESSION["clientCity"] . "</td>";
-        echo "</tr>";
-      echo "</table>";
-
-      echo '<form action="upload.php" method="post" enctype="multipart/form-data">
-      Select image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
-      <input type="submit" class="small button" value="Upload Image" name="submit">
-      </form>';
-
-      echo '<a href="profileSettings.html"><button class="small button">Update Profile Info</button></a>';
-      echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
-
-      //welcome user
-      echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
+      } 
     }
-    else{
-      echo '<br><br><div class="row">
-              <div class="large-4 columns">
-                <div class="panel">
-                  <h3>User Login</h3>
-                  <div class="row">
-                    <div class="large-12 medium-12 columns">
-                      <!--LOGIN FORM START--> 
-                        <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                        <form id="loginForm" method="POST" action="sqlConnect.php">
-                        <form id="loginForm">
-                          <label>Username</label>
-                          <input id="usernameInput" type="text" placeholder="username" name="usernameInput"/>
-                          <label>Password</label>
-                          <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
-                          <input type="submit" class="small button">
-                        </form>
-                      <!--LOGIN FORM END-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>';
-    }
+    //header("Location: sqlConnect.php");
     //close the connection
     mysql_close($con);
+    header("Location: home.php");
     ?>
 
 <script src="js/vendor/jquery.js"></script>

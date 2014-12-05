@@ -1,20 +1,15 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapify | Account Settings</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/custom.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    <?php
+<?php
     session_start();
     //SET MAIN SESSION VARIABLES
     $_SESSION["clientUser"] = $_POST["emailInput"];
-    $_SESSION["clientPWord"] = $_POST["oldPWordInput"];
+    $_SESSION["clientPWord"] = $_POST["passwordInput"];
+    
     //SESSION VARIABLES READY TO SAVE RESULTS
+    $_SESSION["clientFName"] = "";
+    $_SESSION["clientLName"] = "";
+    $_SESSION["clientUID"] = "";
+    $_SESSION["clientAge"] = "";
+    $_SESSION["clientCity"] = "";
 
     //old
     /*$clientFName = "";
@@ -70,6 +65,11 @@
 
     $clientUser = $_SESSION["clientUser"];
     $clientPWord = $_SESSION["clientPWord"];
+
+    //old
+    /*$clientUser = mysql_real_escape_string($clientUser);
+    $clientPWord = mysql_real_escape_string($clientPWord);
+    $clientPWord = md5($clientPWord);*/
     
     //VERIFY LOGIN
     $sql="SELECT * FROM Users WHERE Email = '$clientUser' and PWord = '$clientPWord'";
@@ -86,16 +86,9 @@
 
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
-      $_SESSION["clientPWord"] = md5($_POST["newPWordInput"]);
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
-      $insert = mysql_query(
-      "UPDATE Users
-      SET PWord = '".$_SESSION['clientPWord']."'
-      WHERE Email = '".$_SESSION['clientUser']."'");
-      //$result = mysql_query($con,$sql);
-      
       $result = mysql_query("SELECT * FROM Users WHERE Email = '".$clientUser."'");
-      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM Users");
+      //$result = mysql_query($con,$sql);
 
       //fetch the data from the database 
       while ($row = mysql_fetch_array($result)) {
@@ -104,20 +97,9 @@
         $_SESSION["clientLName"] = $row['LastName'];
         $_SESSION["clientUID"] = $row['userID'];
         $_SESSION["clientAge"] = $row['Age'];
-        $_SESSION["clientCity"] = $row['City'];
+        $_SESSION["clientCity"] = $row['City'];  
       }
+        header("Location: home.php");
     }
-    //header("Location: sqlConnect.php");
-    //close the connection
-    mysql_close($con);
-    header("Location: home.php");
-    ?>
-
-<script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!--<script src="loginSubmit.js"></script>-->
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
-</html>
+      mysql_close($con);
+?>

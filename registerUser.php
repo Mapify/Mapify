@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapify | User Profile</title>
+    <title>Mapify | User Registration</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <script src="js/vendor/modernizr.js"></script>
@@ -75,7 +75,17 @@
     VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
 
     //START SESSION
-    $loginStatus = 1;
+    $sql="SELECT * FROM Users WHERE Email = '$clientUser'";
+    $verificationResult=mysql_query($sql);
+
+    if(mysql_num_rows($verificationResult) == 0){
+      //echo "..Login successful";
+      $loginStatus = 1;
+    }
+    else{
+      echo "This email already has a Mapify Account attached to it. Please choose another.";
+      $loginStatus = 0;
+    }
 
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
@@ -86,97 +96,16 @@
       //fetch the data from the database 
       while ($row = mysql_fetch_array($result)) {
         //echo "ID: ".$row{'userID'}.", Name: ".$row{'FirstName'}." ".$row{'LastName'}.", Address: ".$row{'Address'}.", Year: ".$row{'City'}."<br>"; //display the results
-        $clientFName = $row['FirstName'];
         $_SESSION["clientFName"] = $row['FirstName'];
         $_SESSION["clientLName"] = $row['LastName'];
-        $_SESSION["clientUID"] = $row['userID'];
+        $_SESSION["clientUID"] = $row['userID']; 
       }
-
-      //$result = mysql_query("SELECT userID,UserName,FirstName,LastName,Address,City FROM users");
-      //ECHO NAV BAR
-      echo '<nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="#">Mapify</a></h1>
-          </li>
-           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-
-        <section class="top-bar-section">
-          <!-- Right Nav Section -->
-          <ul class="right">
-            <li>
-              <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
-            </li>
-            <li class="has-dropdown">
-              <a href="#">Menu</a>
-              <ul class="dropdown">
-                <li><a href="#">First link in dropdown</a></li>
-                <li class="active"><a href="#">Active link in dropdown</a></li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-      </nav>';
-
-      //set up table
-      echo "<table border='1'>
-      <tr>
-      <th>User ID</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      </tr>";
-
-      echo "<tr>";
-        echo "<td>" . $_SESSION["clientUID"] . "</td>";
-        echo "<td>" . $_SESSION["clientUser"] . "</td>";
-        echo "<td>" . $_SESSION["clientFName"] . "</td>";
-        echo "<td>" . $_SESSION["clientLName"] . "</td>";
-        echo "</tr>";
-      echo "</table>";
-
-      echo '<form action="upload.php" method="post" enctype="multipart/form-data">
-      Select image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
-      <input type="submit" class="small button" value="Upload Image" name="submit">
-      </form>';
-
-      echo '<a href="profileSettings.html"><button class="small button">Update Info</button></a><br>';
-      echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
-
-      //welcome user
-      echo "<h1>Welcome, ".$clientFName." ".$clientLName."</h1><br><br>";
-      echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
-    }
-    else{
-      echo '<br><br><div class="row">
-              <div class="large-4 columns">
-                <div class="panel">
-                  <h3>User Login</h3>
-                  <div class="row">
-                    <div class="large-12 medium-12 columns">
-                      <!--LOGIN FORM START--> 
-                        <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                        <form id="loginForm" method="POST" action="sqlConnect.php">
-                        <form id="loginForm">
-                          <label>Username</label>
-                          <input id="usernameInput" type="text" placeholder="username" name="usernameInput"/>
-                          <label>Password</label>
-                          <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
-                          <input type="submit" class="small button">
-                        </form>
-                      <!--LOGIN FORM END-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>';
+      $_SESSION["clientAge"] = "Empty";
+      $_SESSION["clientCity"] = "Empty";
+      header("Location: home.php");
     }
     //close the connection
     mysql_close($con);
-
     ?>
 
 <script src="js/vendor/jquery.js"></script>
