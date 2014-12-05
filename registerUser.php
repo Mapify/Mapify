@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapify | User Profile</title>
     <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/custom.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
@@ -53,12 +54,12 @@
     //connection to the database
     $con = mysql_connect($host, $username, $password, $dbname) 
       or die("..Unable to connect to MySQL");
-    echo "..Connected to MySQL<br>";
+    //echo "..Connected to MySQL<br>";
 
     //select a database to work with
     $selectedDB = mysql_select_db($dbname,$con) 
       or die("..Could not select examples");
-    echo "..Selected database: " . $dbname."<br><br>";
+    //echo "..Selected database: " . $dbname."<br><br>";
 
     $_SESSION["clientUser"] = mysql_real_escape_string($_SESSION["clientUser"]);
     $_SESSION["clientPWord"] = mysql_real_escape_string($_SESSION["clientPWord"]);
@@ -142,7 +143,7 @@
       <input type="submit" class="small button" value="Upload Image" name="submit">
       </form>';
 
-      echo '<a href="profileSettings.html"><button class="small button">Update Info</button></a>';
+      echo '<a href="profileSettings.html"><button class="small button">Update Info</button></a><br>';
       echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
 
       //welcome user
