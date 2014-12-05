@@ -76,28 +76,7 @@
         </section>';
     }
     else{
-      echo '<br><br><div class="row">
-              <div class="large-4 columns">
-                <div class="panel">
-                  <h3>User Login</h3>
-                  <div class="row">
-                    <div class="large-12 medium-12 columns">
-                      <!--LOGIN FORM START--> 
-                        <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
-                        <form id="loginForm" method="POST" action="login.php">
-                        <form id="loginForm">
-                          <label>Username</label>
-                          <input id="emailInput" type="text" placeholder="username" name="emailInput"/>
-                          <label>Password</label>
-                          <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
-                          <input type="submit" class="small button">
-                        </form>
-                      <!--LOGIN FORM END-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>';
+      header("Location: login.html");
     }
     ?>
 

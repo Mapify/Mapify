@@ -107,6 +107,9 @@
         $_SESSION["clientCity"] = $row['City'];
       }
     }
+    else{
+      header("Location: login.html");
+    }
     //header("Location: sqlConnect.php");
     //close the connection
     mysql_close($con);

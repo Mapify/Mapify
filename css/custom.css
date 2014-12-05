@@ -257,6 +257,16 @@ section{
     padding-bottom: 150px;
 }
 
+#leftNavPanel ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+#rightNavPanel ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
 #userHomeSection{
   padding-bottom: 0px;
 }

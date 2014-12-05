@@ -101,5 +101,8 @@
       }
         header("Location: home.php");
     }
+    else{
+      header("Location: login.html");
+    }
       mysql_close($con);
 ?>

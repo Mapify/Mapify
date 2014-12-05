@@ -70,10 +70,6 @@
     $clientLName = $_SESSION["clientLName"];
     $clientFName = $_SESSION["clientFName"];
 
-    //INSERT NEW USER VALUES INTO TABLE
-    mysql_query("INSERT INTO Users (Email, PWord, LastName, FirstName)
-    VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
-
     //START SESSION
     $sql="SELECT * FROM Users WHERE Email = '$clientUser'";
     $verificationResult=mysql_query($sql);
@@ -89,6 +85,9 @@
 
     //IF LOGIN SUCCESS SHOW USER DETAILS
     if($loginStatus == 1){
+          //INSERT NEW USER VALUES INTO TABLE
+      mysql_query("INSERT INTO Users (Email, PWord, LastName, FirstName)
+      VALUES ('$clientUser', '$clientPWord', '$clientLName', '$clientFName')");
       //execute the SQL query and SELECT appropriate rows FROM appropriate TABLE
       $result = mysql_query("SELECT userID, PWord, LastName, FirstName FROM Users WHERE Email = '".$clientUser."'");
       //$result = mysql_query($con,$sql);
@@ -103,6 +102,9 @@
       $_SESSION["clientAge"] = "Empty";
       $_SESSION["clientCity"] = "Empty";
       header("Location: home.php");
+    }
+    else{
+      //header("Location: login.html");
     }
     //close the connection
     mysql_close($con);
