@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
     <script src="js/vendor/modernizr.js"></script>
+
   </head>
   <body>
     
@@ -55,7 +57,8 @@
                                 <label>Password</label>
                                 <input id="passwordReg" type="password" placeholder="password" name="pwordRegInput" required/>
                                 <label>Confirm Password</label>
-                                <input id="passwordRegConfirm" type="password" placeholder="password" name="pwordRegInputConfirm" required/>
+                                <input id="passwordRegConfirm" type="password" placeholder="password" name="pwordRegInputConfirm" onChange="checkPasswordMatch();" required/>
+                                <div id="divCheckPasswordMatch"></div>
                                 <input type="submit" class="small button">
                               </form>
                             <!--REGISTRATION FORM END-->
@@ -170,7 +173,7 @@
         </div>
       </footer>
 
-
+    <script src="js/verifyForm.js"></script>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <!--<script src="loginSubmit.js"></script>-->
