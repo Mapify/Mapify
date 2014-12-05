@@ -2,12 +2,16 @@ body {
 font-family: 'Roboto', sans-serif;
 }
 
-
+.exit {
+  font-size: 0.8125rem;
+}
 .fa-times {
   margin-right: 1em;
   margin-left: 1em;
   margin-top: 0.8em;
+  
 }
+
 /* Buzz */
 @-webkit-keyframes buzz {
   50% {

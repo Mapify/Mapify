@@ -34,7 +34,7 @@
           </li>
           <li><a href="#" onclick="toggleLeftNav()">Map Editor Tools</a></li>
           <li><a href="#" onclick="toggleRightNav()">Account</a></li>
-          <a href="logout.php"><li><i class="fa fa-times"></i></li></a>
+          <a href="logout.php"><li class="exit">Log Out<i class="fa fa-times"></i></li></a>
         </ul>
         </section>
       </nav>';
