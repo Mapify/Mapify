@@ -1288,7 +1288,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #eaeaea;
+  background: #333333;
   margin-bottom: 0; }
   .top-bar ul {
     margin-bottom: 0;
@@ -1389,11 +1389,11 @@ meta.foundation-mq-topbar {
     height: 1px;
     width: 100%; }
   .top-bar-section ul li {
-    background: #333333; }
+    background: #eaeaea; }
     .top-bar-section ul li > a {
       display: block;
       width: 100%;
-      color: white;
+      color: black;
       padding: 12px 0 12px 0;
       padding-left: 15px;
       font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -1556,7 +1556,7 @@ meta.foundation-mq-topbar {
 
 @media only screen and (min-width: 40.063em) {
   .top-bar {
-    background: #333333;
+    background: #eaeaea;
     overflow: visible; }
     .top-bar:before, .top-bar:after {
       content: " ";
@@ -1597,22 +1597,22 @@ meta.foundation-mq-topbar {
     .top-bar-section li.hover > a:not(.button) {
       background-color: #555555;
       background: #272727;
-      color: white; }
+      color: black; }
     .top-bar-section li:not(.has-form) a:not(.button) {
       padding: 0 15px;
       line-height: 45px;
-      background: #333333; }
+      background: #eaeaea; }
       .top-bar-section li:not(.has-form) a:not(.button):hover {
-        background-color: #555555;
-        background: #272727; }
+        background-color: #eaeaea;
+        background: #eaeaea; }
     .top-bar-section li.active:not(.has-form) a:not(.button) {
       padding: 0 15px;
       line-height: 45px;
-      color: white;
+      color: black;
       background: #008cba; }
       .top-bar-section li.active:not(.has-form) a:not(.button):hover {
         background: #0078a0;
-        color: white; }
+        color: black; }
     .top-bar-section .has-dropdown > a {
       padding-right: 35px !important; }
       .top-bar-section .has-dropdown > a:after {
@@ -2627,7 +2627,7 @@ td {
 
 /* Default Link Styles */
 a {
-  color: #008cba;
+  color: #black;
   text-decoration: none;
   line-height: inherit; }
   a:hover, a:focus {

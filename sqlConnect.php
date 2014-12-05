@@ -9,6 +9,7 @@
      <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,100,100italic,400italic,700,500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/custom.css"/>
     <link rel="stylesheet" href="css/foundation.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
@@ -133,7 +134,7 @@
           </li>
           <li><a href="#" onclick="toggleLeftNav()">Map Editor Tools</a></li>
           <li><a href="#" onclick="toggleRightNav()">Account</a></li>
-          <a href="logout.php"><li>Log Out</li></a>
+          <a href="logout.php"><li><i class="fa fa-times"></i></li></a>
         </ul>
         </section>
       </nav>';
