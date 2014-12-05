@@ -330,6 +330,11 @@ ul, ol, dl {
 	width:45px;
 }
 
+.profilePicLarge{
+  width:80%;
+  text-align: center;
+}
+
 #profile {
   text-align: center;
 }

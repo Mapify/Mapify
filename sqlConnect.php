@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapify | User Profile</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,100,100italic,400italic,700,500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/custom.css"/>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
@@ -125,54 +128,51 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <li>
-              <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
-            </li>
-            <li class="has-dropdown">
-              <a href="#">Menu</a>
-              <ul class="dropdown">
-                <li><a href="#">First link in dropdown</a></li>
-                <li class="active"><a href="#">Active link in dropdown</a></li>
-              </ul>
-            </li>
-          </ul>
+          <li>
+            <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePic"/>
+          </li>
+          <li><a href="#" onclick="toggleLeftNav()">Map Editor Tools</a></li>
+          <li><a href="#" onclick="toggleRightNav()">Account</a></li>
+          <a href="logout.php"><li>Log Out</li></a>
+        </ul>
         </section>
       </nav>';
-      //set up table
-      echo "<table border='1'>
-      <tr>
-      <th>User ID</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>City</th>
-      </tr>";
-
       
-      echo "<tr>";
-        echo "<td>" . $_SESSION["clientUID"] . "</td>";
-        echo "<td>" . $_SESSION["clientUser"] . "</td>";
-        echo "<td>" . $_SESSION["clientFName"] . "</td>";
-        echo "<td>" . $_SESSION["clientLName"] . "</td>";
-        echo "<td>" . $_SESSION["clientAge"] . "</td>";
-        echo "<td>" . $_SESSION["clientCity"] . "</td>";
-        echo "</tr>";
-      echo "</table>";
+      //MAIN SECTION 
+      echo '<section class="main-section">
+          <!--ALL CONTENT GOES INSIDE THIS SECTION-->
+          <div id="map"></div>
+              <div class="row">
+                <div class="large-4 medium-4 columns" id="leftNavPanel">        
+                  <ul>
+                    <li>New Marker</li>
+                    <li>Move Marker</li>
+                    <li>Edit Map Details</li>
+                    <li>Share this map</li>
+                  </ul>
+                </div>    
+              </div>
+              <div class="row">
+                <div class="large-4 medium-4 columns" id="rightNavPanel">
+                <img src="img/uploads/'.$_SESSION["clientUID"].'.jpg" class ="profilePicLarge"/>
+                  <ul>
+                    <li>'.$_SESSION["clientFName"].' '.$_SESSION["clientLName"].'</li>
+                    <li>Email: '.$_SESSION["clientUser"].'</li>
+                    <li>Age: '.$_SESSION["clientAge"].'</li>
+                    <li>City: '.$_SESSION["clientCity"].'</li>
+                  </ul>
+                  <a href="profileSettings.html"><button class="small button">Update Profile Info</button></a><br>
+                  <a href="accountSettings.html"><button class="small button">Update Account Info</button></a>
 
-      echo '<form action="upload.php" method="post" enctype="multipart/form-data">
-      Select image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
-      <input type="submit" class="small button" value="Upload Image" name="submit">
-      </form>';
-
-      echo '<a href="profileSettings.html"><button class="small button">Update Profile Info</button></a><br>';
-      echo '<a href="accountSettings.html"><button class="small button">Update Account Info</button></a>';
-
-      //welcome user
-      echo "<h1>Welcome, ".$_SESSION['clientFName']." ".$_SESSION['clientLName']."</h1><br><br>";
-      echo '<a href="logout.php"><button class="small button">Log Out</button></a>';
-
+                  <form action="upload.php" method="post" enctype="multipart/form-data">
+                    Select image to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" class="small button" value="Upload Image" name="submit">
+                  </form>
+                </div>
+              </div>
+          <!--END OF CONTENT-->
+        </section>';
     }
     else{
       echo '<br><br><div class="row">
@@ -202,9 +202,10 @@
     mysql_close($con);
     ?>
 
-<script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <!--<script src="loginSubmit.js"></script>-->
+    <script src="js/multi.js"></script>
     <script>
       $(document).foundation();
     </script>
