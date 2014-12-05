@@ -28,9 +28,9 @@
                 <p class="text-center">
                     <form id="loginForm" method="POST" action="login.php">
                   
-                  <input id="emailInput" type="email" placeholder="email" name="emailInput"/>
+                  <input id="emailInput" type="email" placeholder="email" name="emailInput" required/>
                   
-                  <input id="passwordInput" type="password" placeholder="password" name="passwordInput"/>
+                  <input id="passwordInput" type="password" placeholder="password" name="passwordInput" required/>
                   <input type="submit" class="small button radius ">    <a href="https://hssstudentweb.bond.edu.au/143/game13-600/~mapping/accountSettings.html" class="small button radius">Forgotten Password</a>
 
                   <h3 style="padding-top:20px;" ><b>Sign Up</b></h3>
@@ -47,15 +47,15 @@
                               <!--POST METHOD WILL LOAD A NEW PAGE, DataLogin.js below will submit w/out new page load-->
                               <form id="registrationForm" method="POST" action="registerUser.php">
                                 <label>Email</label>
-                                <input id="emailRegInput" type="email" placeholder="email" name="emailRegInput"/>
+                                <input id="emailRegInput" type="email" placeholder="email" name="emailRegInput" required/>
                                 <label>First Name</label>
-                                <input id="fNameReg" type="text" placeholder="first name" name="fNameInput"/>
+                                <input id="fNameReg" type="text" placeholder="first name" name="fNameInput" required/>
                                 <label>Last Name</label>
-                                <input id="lNameReg" type="text" placeholder="last name" name="lNameInput"/>
+                                <input id="lNameReg" type="text" placeholder="last name" name="lNameInput" required/>
                                 <label>Password</label>
-                                <input id="passwordReg" type="password" placeholder="password" name="pwordRegInput"/>
+                                <input id="passwordReg" type="password" placeholder="password" name="pwordRegInput" required/>
                                 <label>Confirm Password</label>
-                                <input id="passwordRegConfirm" type="password" placeholder="password" name="pwordRegInputConfirm"/>
+                                <input id="passwordRegConfirm" type="password" placeholder="password" name="pwordRegInputConfirm" required/>
                                 <input type="submit" class="small button">
                               </form>
                             <!--REGISTRATION FORM END-->
